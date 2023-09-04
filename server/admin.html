@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <div id="section1">
+      <form>
+        <labe>Password</labe>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="button" onclick="checkPassword()" value="Check Password" />
+      </form>
+    </div>
+    <div id="section2">
+      <h3>Add Quiz</h3>
+      <form>
+        <label>Name:</label>
+        <input type="text" name="name" id="name" placeholder="Name" required />
+        <br />
+        <label>Start Date:</label>
+        <input
+          type="datetime-local"
+          name="start-date"
+          id="start-date"
+          placeholder="Start Date"
+          required
+        />
+        <br />
+        <label>End Date:</label>
+        <input
+          type="datetime-local"
+          name="end-date"
+          id="end-date"
+          placeholder="End Date"
+          required
+        />
+        <br />
+        <input type="button" onclick="addQuiz()" value="Add" />
+      </form>
+      <hr />
+      <div>Delete Quiz</div>
+      <form>
+        <label>Quiz:</label>
+        <select id="quiz-delete-select" required></select>
+        <br />
+        <input type="button" onclick="deleteQuiz()" value="Delete Quiz" />
+      </form>
+      <hr />
+      <div>Add Question</div>
+      <form>
+        <label>Quiz:</label>
+        <select id="quiz-select" onchange="changeQuizList()" required></select>
+        <br />
+        <label>Question:</label>
+        <input type="text" name="question" id="question" required />
+        <br />
+        <label>Option A:</label>
+        <input type="text" name="a" id="a" required />
+        <br />
+        <label>Option B:</label>
+        <input type="text" name="b" id="b" required />
+        <br />
+        <label>Option C:</label>
+        <input type="text" name="c" id="c" required />
+        <br />
+        <label>Option D:</label>
+        <input type="text" name="d" id="d" required />
+        <br />
+        <label>Answer:</label>
+        <select id="answer" required>
+          <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option>
+          <option value="d">d</option>
+        </select>
+        <br />
+        <label>Points:</label>
+        <input type="number" name="points" id="points" required />
+        <br />
+        <input type="button" onclick="addQuestion()" value="Add Question" />
+      </form>
+      <hr />
+      <div>Delete Question</div>
+      <form>
+        <label>Question ID:</label>
+        <select id="question-select" required></select>
+        <br />
+        <input
+          type="button"
+          onclick="deleteQuestion()"
+          value="Remove Question"
+        />
+      </form>
+      <hr />
+      <div id="quiz"></div>
+    </div>
+
+    <script>
+      function createOptions(arr) {
+        document.getElementById("quiz-select").innerHTML = "";
+        document.getElementById("quiz-delete-select").innerHTML = "";
+
+        arr.forEach((e) => {
+          document.getElementById(
+            "quiz-select"
+          ).innerHTML += `<option value="${e}">${e}</option>`;
+          document.getElementById(
+            "quiz-delete-select"
+          ).innerHTML += `<option value="${e}">${e}</option>`;
+        });
+      }
+
+      function createQuestions(arr) {
+        document.getElementById("question-select").innerHTML = "";
+        document.getElementById("quiz").innerHTML = "";
+
+        arr.forEach((e) => {
+          document.getElementById(
+            "question-select"
+          ).innerHTML += `<option value="${e._id}">${e._id}</option>`;
+          document.getElementById(
+            "quiz"
+          ).innerHTML += `<div><p>ID: ${e._id} Points: ${e.points}</p><p>${e.question}</p><p>A) ${e.a} B) ${e.b}</p><p>C) ${e.c} D) ${e.d}</p><p>Answer: ${e.answer}</p></div><br />`;
+        });
+      }
+
+      async function changeQuizList() {
+        let password = document.getElementById("password").value;
+        let response;
+
+        try {
+          response = await fetch("/admin/load-quiz", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+            }),
+          });
+          response = await response.json();
+
+          if (response.result) {
+            createQuestions(response.result);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      async function checkPassword() {
+        let password = document.getElementById("password").value;
+        let response;
+
+        try {
+          response = await fetch("/admin/check-password", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+            }),
+          });
+          response = await response.json();
+          document.getElementById("password").disabled = true;
+
+          if (response.result) {
+            let arr = response.result.map((e) => e.name);
+            createOptions(arr);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      async function addQuiz() {
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("name").value;
+        let start = new Date(
+          document.getElementById("start-date").value
+        ).getTime();
+        let end = new Date(document.getElementById("end-date").value).getTime();
+        let response;
+
+        try {
+          response = await fetch("/admin/add-quiz", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+              name: name,
+              start: start,
+              end: end,
+            }),
+          });
+          response = await response.json();
+
+          if (response.result) {
+            let arr = response.result.map((e) => e.name);
+            createOptions(arr);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      async function deleteQuiz() {
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("quiz-delete-select").value;
+        let response;
+
+        try {
+          response = await fetch("/admin/delete-quiz", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+              name: name,
+            }),
+          });
+          response = await response.json();
+
+          if (response.result) {
+            let arr = response.result.map((e) => e.name);
+            createOptions(arr);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      async function addQuestion() {
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("quiz-select").value;
+        let question = document.getElementById("question").value;
+        let a = document.getElementById("a").value;
+        let b = document.getElementById("b").value;
+        let c = document.getElementById("c").value;
+        let d = document.getElementById("d").value;
+        let answer = document.getElementById("answer").value;
+        let points = document.getElementById("points").value;
+        let response;
+
+        try {
+          response = await fetch("/admin/add-question", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+              name: name,
+              question: question,
+              a: a,
+              b: b,
+              c: c,
+              d: d,
+              answer: answer,
+              points: points,
+            }),
+          });
+          response = await response.json();
+
+          if (response.result) {
+            createQuestions(response.result);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+
+      async function deleteQuestion() {
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("quiz-select").value;
+        let id = document.getElementById("question-select").value;
+        let response;
+
+        try {
+          response = await fetch("/admin/delete-question", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password,
+              name: name,
+              id: id,
+            }),
+          });
+          response = await response.json();
+
+          if (response.result) {
+            createQuestions(response.result);
+          }
+        } catch (e) {
+          alert(e);
+        }
+      }
+    </script>
+  </body>
+</html>
