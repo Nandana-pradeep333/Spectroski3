@@ -232,9 +232,9 @@ function RegisterPage() {
                               <option  className="bg-white"disabled selected value="">
                                 Batch
                               </option>
-                              <option className="bg-primary">2019</option>
                               <option className="bg-primary">2020</option>
                               <option className="bg-primary">2021</option>
+                              <option className="bg-primary">2022</option>
                             </Input>
                           </InputGroup>
                           <InputGroup>
@@ -340,9 +340,9 @@ function RegisterPage() {
                               <option disabled selected value="">
                                 Batch
                               </option>
-                              <option className="bg-primary">2019</option>
                               <option className="bg-primary">2020</option>
                               <option className="bg-primary">2021</option>
+                              <option className="bg-primary">2022</option>
                             </Input>
                           </InputGroup>
                           <InputGroup>
