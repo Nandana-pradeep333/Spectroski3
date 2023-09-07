@@ -123,12 +123,12 @@ function Quizzes() {
                             following group for more information
                           </p>
                           <a
-                            href="https://chat.whatsapp.com/JjZTWs7vf1X6uus2HPtuh5"
+                            href="https://bit.ly/watsapp-spectroski3"
                             target="_blank"
                             className="text-primary"
                             rel="noreferrer"
                           >
-                            https://chat.whatsapp.com/JjZTWs7vf1X6uus2HPtuh5
+                            https://bit.ly/watsapp-spectroski3
                           </a>
                           <h2>Mock Quiz</h2> */}
                           <Quiz data={data} />
