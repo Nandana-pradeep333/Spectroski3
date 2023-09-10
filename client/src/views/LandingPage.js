@@ -266,18 +266,22 @@ function LandingPage() {
                     <br />
                     <h1>Rules</h1>
                     <p>♦️ Students can participate as a team of 2.</p>
-                    <p>♦️ Total points for the each quiz is 25</p>
+                    <p>♦️ Each quiz consist of 20 questions. 15 from IEEE Spectrum Magazine and 5 from General Knowledge.</p>
+                    <p>♦️ Each question is of one point.</p>
                     <p>
-                      ♦️ Those who receive all the 25 points will be given an
-                      increment of 20 points , second will be given a bonus of
-                      10 points followed by 5 points for the third person
-                      receiving 25 points
+                      ♦️ Those who receive all the 20 points will be given an
+                      bonus of 5 points ,and the second will be given a bonus of
+                      3 points followed by 2 points for the third team 
+                      receiving 20 points.
                     </p>
                     <p>
                       ♦️ Complete the quiz as soon as possible to Stay atop the
-                      leader board. Get ready for the quiz and bash the
-                      opportunity to grab exciting prizes
+                      leader board. 
                     </p>
+                     <p>
+                      ♦️ Maximum points for each quiz is 25. Get ready for the quiz and bash the
+                      opportunity to grab exciting prizes
+                    </p>   
                   </div>
                 </Col>
               </Row>
