@@ -144,9 +144,9 @@ function PagesNavbar(props) {
           </div>
           <Nav>
             <NavItem>
-              <NavLink to="/register" tag={Link}>
+              <NavLink to="/" tag={Link}>
                 <Button className="d-none d-lg-block" color="primary">
-                  Register
+                  Registeration Closed
                 </Button>
               </NavLink>
             </NavItem>
