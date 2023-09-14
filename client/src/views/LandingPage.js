@@ -139,9 +139,9 @@ function LandingPage() {
                   participate and tickle your brain cells while contributing to
                   the noble cause.
                 </p>
-                <NavLink to="/register" tag={Link}>
+                <NavLink to="/" tag={Link}>
                 
-                 <Button color="primary"  >Register Now</Button> 
+                 <Button color="primary"  >Registeration Closed</Button> 
                 </NavLink>
               </Col>
             </Row>
