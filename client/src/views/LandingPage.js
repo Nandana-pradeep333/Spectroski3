@@ -95,7 +95,7 @@ function LandingPage() {
                 <img
                   alt="..."
                   className="img-fluid floating"
-                  src={require("assets/poster.jpg")}
+                  src={require("assets/img/posternew.jpeg")}
                 />
                 <Card className="card-stats bg-danger">
                   <CardBody>
@@ -134,14 +134,14 @@ function LandingPage() {
                 </h1>
                 <p className="text-white mb-3 text-left">
                   SPECTROSKI is a series of 8 spectrum quizzes in which the
-                  questions are purely based on GK and IEEE spectrum magazine.
+                  questions are purely based on IEEE Spectrum Magazine and General Knowledge.
                   The quiz is gonna conducted online through the website. Come,
                   participate and tickle your brain cells while contributing to
                   the noble cause.
                 </p>
-                <NavLink to="/" tag={Link}>
+                <NavLink to="/login" tag={Link}>
                 
-                 <Button color="primary"  >Registeration  Closed!</Button> 
+                 <Button color="primary"  >Login</Button> 
                 </NavLink>
               </Col>
             </Row>
@@ -269,7 +269,7 @@ function LandingPage() {
                     <p>♦️ Each quiz consist of 20 questions. 15 from IEEE Spectrum Magazine and 5 from General Knowledge.</p>
                     <p>♦️ Each question is of one point.</p>
                     <p>
-                      ♦️ Those who receive all the 20 points will be given an
+                      ♦️ Those who receive all the 20 points first will be given a
                       bonus of 5 points ,and the second will be given a bonus of
                       3 points followed by 2 points for the third team 
                       receiving 20 points.
@@ -279,8 +279,11 @@ function LandingPage() {
                       leader board. 
                     </p>
                      <p>
-                      ♦️ Maximum points for each quiz is 25. Get ready for the quiz and bash the
-                      opportunity to grab exciting prizes
+                      ♦️ Maximum points for each quiz is 25. 
+                      <br/>
+                      <br/> 
+                      <b>Get ready for the quiz and bash the
+                      opportunity to grab exciting prizes</b>
                     </p>   
                   </div>
                 </Col>
