@@ -141,7 +141,7 @@ function LandingPage() {
                 </p>
                 <NavLink to="/" tag={Link}>
                 
-                 <Button color="primary"  >Registeration Closed</Button> 
+                 <Button color="primary"  >Registeration  Closed!</Button> 
                 </NavLink>
               </Col>
             </Row>
