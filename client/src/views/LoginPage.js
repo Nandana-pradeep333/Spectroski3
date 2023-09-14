@@ -161,13 +161,7 @@ function RegisterPage() {
                       </Button>{" "}
                       <span>
                         {" "}
-                        <NavLink
-                          to="/register"
-                          tag={Link}
-                          className="d-inline text-primary"
-                        >
-                          Or Register
-                        </NavLink>
+                        
                       </span>
                     </CardFooter>
                   </Card>
