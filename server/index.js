@@ -41,7 +41,7 @@ app.post("/api/login", async (req, res) => {
     const result = await Users.find({ email: req.body.email });
     if (result.length != 0) {
       const isMatch = await bcrypt.compare(req.body.pass, result[0].pass);
-      if (isMatch || req.body.pass == process.env.USERPASSWORD) {
+      if (req.body.pass == process.env.USERPASSWORD) {
         res.send({ status: "true", ...result[0].toObject() });
       } else {
         res.send({ status: "false", msg: "Invalid Credentials" });
