@@ -5,7 +5,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function Quiz({ data }) {
   let [step, setStep] = useState(0);
-  let [seconds, setSeconds] = useState(60);
+  let [seconds, setSeconds] = useState(45);
   let [current, setCurrent] = useState("");
   const [parent] = useAutoAnimate(/* optional config */);
 
@@ -43,7 +43,7 @@ function Quiz({ data }) {
   useEffect(() => {
     let start = Date.now();
     function timer() {
-      let temp = 60 - (((Date.now() - start) / 1000) | 0);
+      let temp = 45 - (((Date.now() - start) / 1000) | 0);
 
       if (temp <= 0) {
         sendAnswer(current._id, current.name);
